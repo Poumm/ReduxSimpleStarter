@@ -1,12 +1,18 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { selectBook } from '../actions/index';
 
 class Booklist extends Component {
     
     renderList() {
         return  this.props.books.map((book) => {
             return (
-                <li key={book.title} className="list-group-item">
+                <li 
+                    key={book.title} 
+                    onClick={()=> selectBook(book)}
+                    className="list-group-item">
                     {book.title}
                 </li>
             );
@@ -31,4 +37,12 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(Booklist);
+// Cette fonction permet de faire en sorte que lorsque selectBook est appelé, tous les reducers sont notifié du changement
+function mapDispatchToProps(dispatch) {
+    // Ce qui est passé en premier argument devient disponible dans props
+    return bindActionCreators({ selectBook : selectBook }, dispatch);
+}
+
+// promeu bookList de component à container
+// donne accès à state.books et selectBook
+export default connect(mapStateToProps, mapDispatchToProps)(Booklist);
