@@ -1,9 +1,9 @@
 // create reducer
 export default function() {
     return [
-        { title: 'Javascript'},
-        { title: 'Hary Potter'},
-        { title: 'Dark Tower'},
-        { title: 'Ruby'}
+        { title: 'Javascript', pages:51},
+        { title: 'Hary Potter', pages:42},
+        { title: 'Dark Tower', pages:69},
+        { title: 'Ruby', page:1}
     ]
 }
